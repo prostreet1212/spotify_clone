@@ -47,7 +47,7 @@ class GetStartedPage extends StatelessWidget {
                     fontSize: 18,
                   ),),
                 const SizedBox(height: 21,),
-                const Text('Какой-йто текст тут должен быть. пока бусть будет этот. потом что нибудь придумаю',style: TextStyle(
+                const Text('Какой-то текст тут должен быть. пока бусть будет этот. потом что нибудь придумаю',style: TextStyle(
                   fontWeight: FontWeight.w500,
                   color: AppColors.grey,
                   fontSize: 13,

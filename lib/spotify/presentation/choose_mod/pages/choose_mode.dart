@@ -1,4 +1,4 @@
-
+import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
@@ -33,7 +33,7 @@ class ChooseModePage extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.symmetric(
                 vertical: 40,
-                horizontal:40 ),
+                horizontal: 40),
             child: Column(
               children: [
                 Align(
@@ -46,19 +46,74 @@ class ChooseModePage extends StatelessWidget {
                     color: Colors.white,
                     fontSize: 18,
                   ),),
-                const SizedBox(height: 21,),
-                const Text('Какой-йто текст тут должен быть. пока бусть будет этот. потом что нибудь придумаю',style: TextStyle(
-                  fontWeight: FontWeight.w500,
-                  color: AppColors.grey,
-                  fontSize: 13,
+                const SizedBox(height: 40,),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Column(
+                      //mainAxisSize: MainAxisSize.min,
+                      children: [
+                        ClipOval(
+                          child: BackdropFilter(
+                            filter:ImageFilter.blur(sigmaX:10,sigmaY: 10 ),
+                            child: Container(
+                              height: 80,
+                              width: 80,
+                              decoration: BoxDecoration(
+                                  color: Color(0xff30393C).withOpacity(0.5),
+                                shape: BoxShape.circle
+                              ),
+                            child: SvgPicture.asset(AppVectors.moon,
+                            fit: BoxFit.none,),
+                            ),
+                          ),
+
+                        ),
+                        SizedBox(height: 15,),
+                        Text('Dark mode',style: TextStyle(
+                          fontWeight: FontWeight.w500,
+                          fontSize: 17,
+                          color: AppColors.grey,
+                        ),),
+                      ],
+                    ),
+                    SizedBox(width: 40,),
+                    Column(
+                      //mainAxisSize: MainAxisSize.min,
+                      children: [
+                        ClipOval(
+                          child: BackdropFilter(
+                            filter:ImageFilter.blur(sigmaX:10,sigmaY: 10 ),
+                            child: Container(
+                              height: 80,
+                              width: 80,
+                              decoration: BoxDecoration(
+                                  color: Color(0xff30393C).withOpacity(0.5),
+                                  shape: BoxShape.circle
+                              ),
+                              child: SvgPicture.asset(AppVectors.sun,
+                                fit: BoxFit.none,),
+                            ),
+                          ),
+
+                        ),
+                        SizedBox(height: 15,),
+                        Text('Light mode',style: TextStyle(
+                            fontWeight: FontWeight.w500,
+                            fontSize: 17,
+                            color: AppColors.grey
+                        ),),
+                      ],
+                    ),
+                  ],
                 ),
-                  textAlign: TextAlign.center,),
                 const SizedBox(height: 50,),
                 BasicAppButton(
-                    onPressed: (){
-                      Navigator.push(context, MaterialPageRoute(builder: (c)=>ChooseModePage()));
+                    onPressed: () {
+                      Navigator.push(context,
+                          MaterialPageRoute(builder: (c) => ChooseModePage()));
                     },
-                    title: 'Get Started'),
+                    title: 'Continue'),
               ],
             ),
           ),
