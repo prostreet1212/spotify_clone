@@ -1,12 +1,15 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:spotify_clone/spotify/presentation/choose_mod/bloc/theme_cubit.dart';
 
 import '../../../../common/widgets/button/basic_app_button.dart';
 import '../../../../core/configs/assets/app_images.dart';
 import '../../../../core/configs/assets/app_vectors.dart';
 import '../../../../core/configs/theme/app_colors.dart';
+import '../../auth/pages/signup_or_signin.dart';
 
 class ChooseModePage extends StatelessWidget {
   const ChooseModePage({super.key});
@@ -53,52 +56,62 @@ class ChooseModePage extends StatelessWidget {
                     Column(
                       //mainAxisSize: MainAxisSize.min,
                       children: [
-                        ClipOval(
-                          child: BackdropFilter(
-                            filter:ImageFilter.blur(sigmaX:10,sigmaY: 10 ),
-                            child: Container(
-                              height: 80,
-                              width: 80,
-                              decoration: BoxDecoration(
-                                  color: Color(0xff30393C).withOpacity(0.5),
-                                shape: BoxShape.circle
+                        GestureDetector(
+                          onTap: (){
+                            context.read<ThemeCubit>().updateTheme(ThemeMode.dark);
+                          },
+                          child: ClipOval(
+                            child: BackdropFilter(
+                              filter:ImageFilter.blur(sigmaX:10,sigmaY: 10 ),
+                              child: Container(
+                                height: 80,
+                                width: 80,
+                                decoration: BoxDecoration(
+                                    color: const Color(0xff30393C).withOpacity(0.5),
+                                  shape: BoxShape.circle
+                                ),
+                              child: SvgPicture.asset(AppVectors.moon,
+                              fit: BoxFit.none,),
                               ),
-                            child: SvgPicture.asset(AppVectors.moon,
-                            fit: BoxFit.none,),
                             ),
-                          ),
 
+                          ),
                         ),
-                        SizedBox(height: 15,),
-                        Text('Dark mode',style: TextStyle(
+                        const SizedBox(height: 15,),
+                        const Text('Dark mode',style: TextStyle(
                           fontWeight: FontWeight.w500,
                           fontSize: 17,
                           color: AppColors.grey,
                         ),),
                       ],
                     ),
-                    SizedBox(width: 40,),
+                    const SizedBox(width: 40,),
                     Column(
                       //mainAxisSize: MainAxisSize.min,
                       children: [
-                        ClipOval(
-                          child: BackdropFilter(
-                            filter:ImageFilter.blur(sigmaX:10,sigmaY: 10 ),
-                            child: Container(
-                              height: 80,
-                              width: 80,
-                              decoration: BoxDecoration(
-                                  color: Color(0xff30393C).withOpacity(0.5),
-                                  shape: BoxShape.circle
+                        GestureDetector(
+                          onTap: (){
+                            context.read<ThemeCubit>().updateTheme(ThemeMode.light);
+                          },
+                          child: ClipOval(
+                            child: BackdropFilter(
+                              filter:ImageFilter.blur(sigmaX:10,sigmaY: 10 ),
+                              child: Container(
+                                height: 80,
+                                width: 80,
+                                decoration: BoxDecoration(
+                                    color: const Color(0xff30393C).withOpacity(0.5),
+                                    shape: BoxShape.circle
+                                ),
+                                child: SvgPicture.asset(AppVectors.sun,
+                                  fit: BoxFit.none,),
                               ),
-                              child: SvgPicture.asset(AppVectors.sun,
-                                fit: BoxFit.none,),
                             ),
+                          
                           ),
-
                         ),
-                        SizedBox(height: 15,),
-                        Text('Light mode',style: TextStyle(
+                        const SizedBox(height: 15,),
+                        const Text('Light mode',style: TextStyle(
                             fontWeight: FontWeight.w500,
                             fontSize: 17,
                             color: AppColors.grey
@@ -111,7 +124,7 @@ class ChooseModePage extends StatelessWidget {
                 BasicAppButton(
                     onPressed: () {
                       Navigator.push(context,
-                          MaterialPageRoute(builder: (c) => ChooseModePage()));
+                          MaterialPageRoute(builder: (c) => const SignupOrSigninPage()));
                     },
                     title: 'Continue'),
               ],
