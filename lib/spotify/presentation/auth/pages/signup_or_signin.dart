@@ -4,6 +4,7 @@ import 'package:spotify_clone/common/helpers/is_dark_mode.dart';
 import 'package:spotify_clone/common/widgets/appbar/app_bar.dart';
 import 'package:spotify_clone/common/widgets/button/basic_app_button.dart';
 import 'package:spotify_clone/core/configs/assets/app_images.dart';
+import 'package:spotify_clone/spotify/presentation/auth/pages/signin.dart';
 import 'package:spotify_clone/spotify/presentation/auth/pages/signup.dart';
 
 import '../../../../core/configs/assets/app_vectors.dart';
@@ -61,7 +62,7 @@ class _SignupOrSigninPageState extends State<SignupOrSigninPage> {
                         flex:1,
                         child: BasicAppButton(
                           onPressed: () {
-                            Navigator.push(context, MaterialPageRoute(builder: (context)=>const SignupPage()));
+                            Navigator.push(context, MaterialPageRoute(builder: (context)=> SignupPage()));
                           },
                           title: 'Register',
                         ),
@@ -70,7 +71,14 @@ class _SignupOrSigninPageState extends State<SignupOrSigninPage> {
                       Expanded(
                         flex: 1,
                         child: TextButton(
-                          onPressed: () {},  
+                          onPressed: () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (BuildContext context)=> SigninPage()
+                                )
+                            );
+                          },
                           child: Text(
                             'Sign in',
                             style: TextStyle(
