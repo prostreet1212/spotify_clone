@@ -36,6 +36,7 @@ dependencies:
   path_provider:
   firebase_core:
   firebase_auth:
+  firebase_storage:
   get_it:
   dartz:
 
