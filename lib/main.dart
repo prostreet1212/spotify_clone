@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_storage/firebase_storage.dart';
@@ -24,8 +25,12 @@ void main() async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
+
+
+
   try {
     await FirebaseAuth.instance.useAuthEmulator('localhost', 9099);
+     FirebaseFirestore.instance.useFirestoreEmulator('localhost', 8080);
     await FirebaseStorage.instance.useStorageEmulator('localhost', 9199);
   } catch (e) {
     // ignore: avoid_print
@@ -39,7 +44,7 @@ void main() async {
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
-  // This widget is the root of your application.
+  // This widget is the home of your application.
   @override
   Widget build(BuildContext context) {
     return MultiBlocProvider(
@@ -50,7 +55,7 @@ class MyApp extends StatelessWidget {
         builder: (context, mode) {
           return MaterialApp(
             title: 'Flutter Demo',
-            theme: AppTheme.lightTheme,//light
+            theme: AppTheme.darkTheme,//light
             darkTheme: AppTheme.darkTheme,
             themeMode: mode,
             debugShowCheckedModeBanner: false,

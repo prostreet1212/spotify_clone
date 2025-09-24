@@ -6,9 +6,10 @@ import 'package:spotify_clone/core/configs/assets/app_vectors.dart';
 import 'package:spotify_clone/spotify/data/models/auth/signin_user_req.dart';
 import 'package:spotify_clone/spotify/domain/usecases/auth/signin.dart';
 import 'package:spotify_clone/spotify/presentation/auth/pages/signup.dart';
+import 'package:spotify_clone/spotify/presentation/home/pages/home.dart';
 
 import '../../../../service_locator.dart';
-import '../../root/pages/root.dart';
+
 
 class SigninPage extends StatelessWidget {
   SigninPage({super.key});
@@ -38,7 +39,7 @@ class SigninPage extends StatelessWidget {
             SizedBox(height: 20),
             BasicAppButton(
               onPressed: () async {
-                var result = await sl<SigninUseCase>().call(
+                var result = await sl<SigninUseCase>().call(params:
                   SigninUserReq(email: _email.text, password: _password.text),
                 );
                 result.fold(
@@ -49,7 +50,7 @@ class SigninPage extends StatelessWidget {
                       (r) {
                     Navigator.pushAndRemoveUntil(
                       context,
-                      MaterialPageRoute(builder: (context) => const RootPage()),
+                      MaterialPageRoute(builder: (context) => const HomePage()),
                           (route) => false,
                     );
                   },

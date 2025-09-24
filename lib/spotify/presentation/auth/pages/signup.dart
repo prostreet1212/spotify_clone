@@ -6,7 +6,7 @@ import 'package:spotify_clone/core/configs/assets/app_vectors.dart';
 import 'package:spotify_clone/spotify/data/models/auth/create_user_req.dart';
 import 'package:spotify_clone/spotify/domain/usecases/auth/signup.dart';
 import 'package:spotify_clone/spotify/presentation/auth/pages/signin.dart';
-import 'package:spotify_clone/spotify/presentation/root/pages/root.dart';
+import 'package:spotify_clone/spotify/presentation/home/pages/home.dart';
 
 import '../../../../service_locator.dart';
 
@@ -21,7 +21,7 @@ class SignupPage extends StatelessWidget {
   Widget build(BuildContext context) {
     _fullName.text='Dmitry';
     _email.text='admin@kdrc.ru';
-    _password.text='123';
+    _password.text='123456';
     return Scaffold(
       bottomNavigationBar: _siginText(context),
       appBar: BasicAppBar(
@@ -42,7 +42,7 @@ class SignupPage extends StatelessWidget {
             SizedBox(height: 20),
             BasicAppButton(
               onPressed: () async{
-                var result = await sl<SignupUseCase>().call(
+                var result = await sl<SignupUseCase>().call(params:
                   CreateUserReq(
                     fullName: _fullName.text,
                     email: _email.text,
@@ -56,7 +56,7 @@ class SignupPage extends StatelessWidget {
                }, (r){
                  Navigator.pushAndRemoveUntil(
                      context,
-                      MaterialPageRoute(builder: (context)=>const RootPage()),
+                      MaterialPageRoute(builder: (context)=>const HomePage()),
                      (route) => false
                  );
                });
